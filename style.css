@@ -827,3 +827,263 @@ button {
         display: none;
     }
 }
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulse-animation {
+    animation: pulse 0.5s ease-in-out;
+}
+
+/* Hover Animations */
+.quick-access-item, .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quick-access-item:hover, .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.play-button, .card-play-button {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    transform: scale(0.8);
+    opacity: 0;
+}
+
+.quick-access-item:hover .play-button, 
+.card:hover .card-play-button {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.control-button, .play-pause-button {
+    transition: transform 0.2s ease;
+}
+
+.control-button:hover, .play-pause-button:hover {
+    transform: scale(1.1);
+}
+
+.control-button.active {
+    color: #1ed760;
+}
+
+/* Progress Bar Animation */
+.progress-bar-fg {
+    transition: width 0.1s linear;
+}
+
+.progress-handle {
+    transition: left 0.1s linear;
+}
+
+/* Responsive Sidebar */
+.sidebar-toggle {
+    display: none;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.sidebar {
+    transition: width 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar.collapsed {
+    width: 70px;
+    overflow: hidden;
+}
+
+.sidebar.collapsed .nav-text,
+.sidebar.collapsed .library-filters,
+.sidebar.collapsed .library-search,
+.sidebar.collapsed .lib-option .nav-text,
+.sidebar.collapsed .library-actions,
+.sidebar.collapsed .empty-library,
+.sidebar.collapsed .box-subtitle {
+    display: none;
+}
+
+.sidebar.collapsed .nav-option, 
+.sidebar.collapsed .lib-option {
+    justify-content: center;
+    padding: 12px 0;
+}
+
+.sidebar.collapsed .nav-option i, 
+.sidebar.collapsed .lib-option img {
+    margin-right: 0;
+}
+
+body.sidebar-collapsed .main-content {
+    margin-left: 0;
+}
+
+/* Media Queries Improvements */
+@media (max-width: 1200px) {
+    .card-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .social-links {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 992px) {
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .quick-access-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .now-playing-bar {
+        flex-wrap: wrap;
+    }
+    
+    .now-playing-center {
+        order: 1;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .now-playing-left {
+        order: 2;
+        width: 50%;
+    }
+    
+    .now-playing-right {
+        order: 3;
+        width: 50%;
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar-toggle {
+        display: block;
+    }
+    
+    .topbar {
+        padding-left: 15px;
+    }
+    
+    .main-container {
+        position: relative;
+    }
+    
+    .sidebar {
+        position: absolute;
+        z-index: 100;
+        height: calc(100vh - 90px);
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .nav-text, .lib-option .nav-text, .box-title, .box-subtitle, .create-button {
+        font-size: 12px;
+    }
+    
+    .nav-option i, .lib-option img {
+        font-size: 18px;
+    }
+    
+    .library-header, .library-filters, .library-search, .empty-library {
+        padding: 0 2px;
+    }
+    
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-links {
+        flex-direction: column;
+    }
+    
+    .control-button, .volume-bar {
+        margin: 0 5px;
+    }
+}
+
+@media (max-width: 576px) {
+    .quick-access-grid, .card-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .now-playing-left, .now-playing-right {
+        width: 100%;
+        justify-content: center;
+        margin: 5px 0;
+    }
+    
+    .now-playing-center {
+        margin: 10px 0;
+    }
+    
+    .current-track-info {
+        max-width: 150px;
+    }
+    
+    .progress-container {
+        width: 80%;
+    }
+    
+    .volume-bar {
+        display: none;
+    }
+    
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .user-controls {
+        width: 100%;
+        justify-content: space-around;
+        margin-top: 10px;
+    }
+}
+
+/* Fix for Safari margin issue */
+@supports (-webkit-touch-callout: none) {
+    .sidebar, .main-content {
+        margin: 0;
+        border-radius: 0;
+    }
+    
+    .main-container {
+        overflow: hidden;
+    }
+}
+
+/* Fix for backdrop-filter property */
+.glass-effect {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
